@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Aprendible - {{ $title ?? '' }}</title>
-    <meta name="description" content="{{ $metaDescription ?? 'Default meta description' }}" />
+    <title>Post</title>
     <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" />
 
@@ -13,27 +12,43 @@
     <script src="js/bootstrap.min.js"></script>
 </head>
 <body>
-    <form >
+    <form action="{{ route('posts.store') }}" method="POST">
+        @csrf
     <div class="container">
-    <div class="card">
+    <div class="card text-dark bg-light mb-3" style="width: 18rem;">
+        @if(session('status'))
         <div class="card-header">
-           View Create Post
+          {{ session('status') }}
         </div>
-        <div class="card-body">
+        @endif
+        <div class="card-body " >
           <h5 class="card-title">Create Post</h5>
-          <p class="card-text">
+          <p class="card-text col-md-4">
             <div class="form-group">
                 <label for="title" class="form-label">Title</label>
-                <input type="text" class="form-control" id="title" name="title" placeholder="Write text here" required>
+                <input type="text" class="form-control" id="title" name="title" placeholder="Write text here" value="{{old('title')}}">
+                @error('title')
+                    <small class="alert-danger">{{$message}}</small>
+                @enderror
             </div>
             <div class="form-group">
                 <label for="body" class="form-label">Body</label>
-                <textarea name="body" class="form-control" placeholder="Write body test here" required></textarea>
+                <textarea name="body" class="form-control" placeholder="Write body test here" >{{old('body')}}</textarea>
+                @error('body')
+                <small class="alert-danger">{{$message}}</small>
+                @enderror
             </div>
-        </p>
+
+            <div class="form-group">
+                <label for="created_date" class="form-label">Created Date</label>
+                <input type="date" class="form-control" id="created_date" name="created_date" placeholder="Write text here"  value="{{old('created_date')}}">
+                @error('created_date')
+                <small class="alert-danger">{{$message}}</small>
+                @enderror
+            </div>
           <button type="submit" class="btn btn-primary">Save post</button>
-          <button type="reset" class="btn btn-warning">Clear</button>
-        </div>
+          <input  type="reset" class="btn btn-warning" value="Reset" />
+
       </div>
     </div>
     </form>

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-//use App\Models\Post;
+use App\Models\Post;
 class PostController extends Controller
 {
     /**
@@ -23,7 +23,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('posts.create'); 
+        return view('posts.create');
     }
 
     /**
@@ -34,7 +34,19 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+           'title' => ['required','min:1','max:30'],
+            'body' => ['required','max:250'],
+            'created_date' => ['required']
+
+        ]);
+        $post = new Post;
+        $post->title = $request->input('title');
+        $post->body = $request->input('body');
+        $post->created_date = $request->input('created_date');
+        $post->save();
+        session()->flash('status', 'Post Created!!');
+        return to_route('posts.create');
     }
 
     /**
