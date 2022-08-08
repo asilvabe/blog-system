@@ -39,13 +39,6 @@
                 @enderror
             </div>
 
-            <div class="form-group">
-                <label for="created_date" class="form-label">Created Date</label>
-                <input type="date" class="form-control" id="created_date" name="created_date" placeholder="Write text here"  value="{{old('created_date')}}">
-                @error('created_date')
-                <small class="alert-danger">{{$message}}</small>
-                @enderror
-            </div>
           <button type="submit" class="btn btn-primary">Save post</button>
           <input  type="reset" class="btn btn-warning" value="Reset" />
 
