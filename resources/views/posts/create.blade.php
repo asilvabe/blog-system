@@ -7,7 +7,6 @@
     <title>Post</title>
     <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" />
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
 </head>
@@ -38,11 +37,10 @@
                 <small class="alert-danger">{{$message}}</small>
                 @enderror
             </div>
-
           <button type="submit" class="btn btn-primary">Save post</button>
           <input  type="reset" class="btn btn-warning" value="Reset" />
-
       </div>
+    </div>
     </div>
     </form>
 </body>
