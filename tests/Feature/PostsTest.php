@@ -51,8 +51,10 @@ class PostsTest extends TestCase
     public function validationProvider(): array
     {
         return [
-            ['title', Str::random(31)],
-            ['body', Str::random(251)],
+            'title is required' => ['title', ''],
+            'title must be less or equal than 30' => ['title', Str::random(31)],
+            'body is required' => ['body', ''],
+            'body must be less or equal than 250' => ['body', Str::random(251)],
         ];
     }
 }
