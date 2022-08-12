@@ -13,7 +13,7 @@ class PostsTest extends TestCase
     use WithFaker;
 
     /** @test */
-    public function it_can_show_the_form_to_create_a_post(): void
+    public function it_can_render_the_create_post_form(): void
     {
         $this
             ->get(route('posts.create'))
@@ -22,7 +22,7 @@ class PostsTest extends TestCase
     }
 
     /** @test */
-    public function it_can_create_a_post(): void
+    public function it_can_store_a_post(): void
     {
         $data = [
             'title' => $this->faker->sentence(2),
