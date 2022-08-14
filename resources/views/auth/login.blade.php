@@ -12,6 +12,7 @@
 </head>
 <body>
     <div class="container center">
+        <a href="{{ url('/') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
         <div class="mt-3 text-center">
             <div class="card border-dark mb-3" style="max-width: 18rem;">
                 <form action="{{ route('login') }}" method="post">
