@@ -7,7 +7,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
 Route::view('home', 'home');
 
 Route::post('/posts', [PostController::class,'store'] )->name('posts.store');

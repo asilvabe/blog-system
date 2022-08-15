@@ -24,9 +24,7 @@ class PostController extends Controller
         $post = new Post;
         $post->title = $request->input('title');
         $post->body = $request->input('body');
-
         $post->save();
-
         session()->flash('status', 'Post Created!!');
 
         return to_route('posts.create');
