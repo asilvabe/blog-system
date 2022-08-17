@@ -30,6 +30,6 @@ class PostController extends Controller
 
         session()->flash('status', 'Post Created!!');
 
-        return to_route('home');
+        return to_route('main');
     }
 }

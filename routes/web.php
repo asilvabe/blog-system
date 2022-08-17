@@ -5,7 +5,7 @@ use App\Http\Controllers\PostController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('main');
 
 Route::view('home', 'home')->name('home');
 

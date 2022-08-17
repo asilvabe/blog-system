@@ -43,7 +43,7 @@ class PostsTest extends TestCase
         $this
             ->actingAs(User::factory()->create())
             ->post(route('posts.store'), $data)
-            ->assertRedirect(route('home'));
+            ->assertRedirect(route('main'));
 
         $this->assertDatabaseHas('posts', $data);
     }
