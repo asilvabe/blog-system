@@ -9,6 +9,12 @@ use Illuminate\View\View;
 
 class PostController extends Controller
 {
+    public function index(): View
+    {
+        $posts = Post::get();
+        return view('posts.index',['posts' => $posts]);
+    }
+
     public function create(): View
     {
         return view('posts.create');
