@@ -53,26 +53,32 @@
                         </g>
                     </svg>
                 </div>
+                <a href="{{ route('posts.create') }}">Create New Post</a>
                 <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
                     <div class="grid grid-cols-1 md:grid-cols-6">
                         <table class="table table-bordered text-center" >
                             <thead>
                               <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Titulo</th>
-                                <th scope="col">Fecha</th>
+                                <th scope="col">Title</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">User</th>
                               </tr>
                             </thead>
-                            <tbody>
+                            <tbody >
                                 @foreach ($posts as $post)
                                     <tr>
                                         <th scope="row">{{ $post->id }}</th>
                                         <td>{{ $post->title }}</td>
-                                        <td>{{ $post->created_at }}</td>
+                                        <td>{{ $post->created_at->format('d/m/Y') }}</td>
+                                        <td>{{ $post->user_id }}</td>
                                     </tr>
                                 @endforeach
+
                             </tbody>
+
                           </table>
+                          {{ $posts->links() }}
                     </div>
                 </div>
 
