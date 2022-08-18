@@ -8,14 +8,8 @@ use Illuminate\Support\Facades\DB;
 
 class PostSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
-    public function run()
+    public function run(): void
     {
-      \App\Models\Post::factory(50)->create();
-        //DB::table('posts')->insert($datos);
+        \App\Models\Post::factory(50)->create();
     }
 }

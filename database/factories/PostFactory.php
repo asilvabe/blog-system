@@ -9,12 +9,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class PostFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    public function definition()
+    public function definition(): array
     {
         return [
             'title'=> $this->faker->word(),
@@ -22,8 +17,6 @@ class PostFactory extends Factory
             'user_id'=> '1',
             'created_at' => $this->faker->dateTime(),
             'updated_at' => $this->faker->dateTime(),
-
-
         ];
     }
 }

@@ -38,14 +38,12 @@
                     @endauth
                 </div>
             @endif
-
             <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
                 @if(session('status'))
                     <div class="card-header">
                         {{ session('status') }}
                     </div>
                 @endif
-
                 <div class="flex justify-center pt-8 sm:justify-start sm:pt-0">
                     <svg viewBox="0 0 651 192" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-16 w-auto text-gray-700 sm:h-20">
                         <g clip-path="url(#clip0)" fill="#EF3B2D">
@@ -53,7 +51,9 @@
                         </g>
                     </svg>
                 </div>
-                <a href="{{ route('posts.create') }}">Create New Post</a>
+                @auth
+                    <a href="{{ route('posts.create') }}">Create New Post</a>
+                @endauth
                 <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
                     <div class="grid grid-cols-1 md:grid-cols-6">
                         <table class="table table-bordered text-center" >
@@ -74,14 +74,11 @@
                                         <td>{{ $post->user_id }}</td>
                                     </tr>
                                 @endforeach
-
                             </tbody>
-
                           </table>
                           {{ $posts->links() }}
                     </div>
                 </div>
-
                 <div class="flex justify-center mt-4 sm:items-center sm:justify-between">
                     <div class="text-center text-sm text-gray-500 sm:text-left">
                         <div class="flex items-center">
@@ -102,7 +99,6 @@
                             </a>
                         </div>
                     </div>
-
                     <div class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">
                         Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
                     </div>

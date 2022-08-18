@@ -9,7 +9,7 @@ use Illuminate\View\View;
 
 class PostController extends Controller
 {
-    public function index()
+    public function index(): View
     {
         $posts = Post::Paginate(10);
         return view('posts.index', compact('posts'));
@@ -26,16 +26,12 @@ class PostController extends Controller
             'title' => ['required', 'min:1', 'max:30'],
             'body' => ['required', 'max:250'],
         ]);
-
         $post = new Post;
         $post->title = $request->input('title');
         $post->body = $request->input('body');
         $post->user_id = auth()->user()->id;
-
         $post->save();
-
         session()->flash('status', 'Post Created!!');
-
         return to_route('posts.index');
     }
 }
