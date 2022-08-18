@@ -12,7 +12,17 @@
 </head>
 <body>
     <div class="container">
+        @foreach ($posts as $post)
+        <div class="row">
+            <div class="col-md-12">
+                <div style="display: flex; align-items:baseline">
+                        <h3><a href="{{ route('posts.show',$post) }}">{{ $post->title }}</a></h3>
+                </div>
 
+            </div>
+
+        </div>
+        @endforeach
     </div>
 </body>
 </html>
