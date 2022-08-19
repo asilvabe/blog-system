@@ -11,8 +11,9 @@ class PostController extends Controller
 {
     public function index(): View
     {
-        $posts = Post::get();
-        return view('posts.index',['posts' => $posts]);
+        $posts = Post::Paginate(10);
+
+        return view('posts.index', compact('posts'));
     }
 
     public function create(): View
@@ -36,11 +37,11 @@ class PostController extends Controller
         $post->title = $request->input('title');
         $post->body = $request->input('body');
         $post->user_id = auth()->user()->id;
-
+        
         $post->save();
-
+        
         session()->flash('status', 'Post Created!!');
-
-        return to_route('main');
+        
+        return to_route('posts.index');
     }
 }
