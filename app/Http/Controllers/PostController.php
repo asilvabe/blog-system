@@ -12,12 +12,18 @@ class PostController extends Controller
     public function index(): View
     {
         $posts = Post::Paginate(10);
+
         return view('posts.index', compact('posts'));
     }
 
     public function create(): View
     {
         return view('posts.create');
+    }
+
+    public function show(Post $post)
+    {
+        return view('posts.show',['post'=> $post]);
     }
 
     public function store(Request $request): RedirectResponse
