@@ -14,7 +14,6 @@ class PostFactory extends Factory
         return [
             'title'=> $this->faker->word(),
             'body'=> $this->faker->paragraph(),
-            'user_id'=> '1',
             'created_at' => $this->faker->dateTime(),
             'updated_at' => $this->faker->dateTime(),
         ];
