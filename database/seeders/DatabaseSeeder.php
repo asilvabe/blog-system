@@ -2,8 +2,6 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -12,8 +10,6 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-
-
         User::factory()->create([
             'name' => env(key: 'ADMIN_NAME'),
             'email' => env(key: 'ADMIN_EMAIL'),
