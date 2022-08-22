@@ -2,10 +2,11 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Post>
+ * @extends Factory
  */
 class PostFactory extends Factory
 {
@@ -14,7 +15,7 @@ class PostFactory extends Factory
         return [
             'title'=> $this->faker->word(),
             'body'=> $this->faker->paragraph(),
-            'user_id'=> '1',
+            'user_id' => User::factory(),
             'created_at' => $this->faker->dateTime(),
             'updated_at' => $this->faker->dateTime(),
         ];
