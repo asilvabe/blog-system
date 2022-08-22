@@ -13,6 +13,8 @@ return new class extends Migration
             $table->string('title');
             $table->longText('body');
             $table->foreignId('user_id')->constrained('users');
+            $table->timestamp('approved_at')->nullable();
+            $table->foreignId('approved_by')->nullable()->constrained('users');
             $table->timestamps();
         });
     }

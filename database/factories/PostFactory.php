@@ -16,6 +16,8 @@ class PostFactory extends Factory
             'title'=> $this->faker->word(),
             'body'=> $this->faker->paragraph(),
             'user_id' => User::factory(),
+            'approved_at' => null,
+            'approved_by' => null,
             'created_at' => $this->faker->dateTime(),
             'updated_at' => $this->faker->dateTime(),
         ];

@@ -14,4 +14,9 @@ class Post extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function approving(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'approved_by');
+    }
 }

@@ -18,6 +18,12 @@
                 <p>{{ $post->body }}</p>
                 <p>{{ $post->created_at->format('d/m/Y H:i a') }}</p>
                 <p>Autor: {{ $post->author->name }}</p>
+                @auth
+                    @if ( auth()->user()->isAdmin())
+                        <p>Approved by:{{ isset($post->approving) ? $post->approving->name : 'Pendiente' }}</p>
+                        <p>Date:{{ $post->approved_at }}</p>
+                    @endif
+                @endauth
                 <a href ="{{ route('posts.index') }}">Regresar</a>
             </div>
         </div>
