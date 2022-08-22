@@ -44,6 +44,20 @@ php artisan key:generate
 php artisan migrate
 ```
 
+6. Set the default values for the first admin user
+```sh
+In the .env file set the values:
+
+ADMIN_NAME=
+ADMIN_EMAIL=
+ADMIN_PASS=
+```
+
+7. Seed the database with test data
+```sh
+php artisan db:seed
+```
+
 <!-- CONTRIBUTING -->
 ## Contributing
 

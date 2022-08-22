@@ -11,12 +11,15 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         User::factory()->create([
-            'name' => env(key: 'ADMIN_NAME'),
-            'email' => env(key: 'ADMIN_EMAIL'),
-            'password' => bcrypt(env(key: 'ADMIN_PASS')),
+            'name' => config(key: 'blog.admin_name'),
+            'email' => config(key: 'blog.admin_email'),
+            'password' => bcrypt(config(key: 'blog.admin_password')),
             'is_admin' => true,
          ]);
 
-        User::factory()->count(rand(1,5))->has(Post::factory(count: 50), relationship: 'posts')->create();
+        User::factory()
+            ->count(rand(1,5))
+            ->has(Post::factory(count: 50), relationship: 'posts')
+            ->create();
     }
 }
