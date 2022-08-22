@@ -11,15 +11,16 @@
     <script src="js/bootstrap.min.js"></script>
 </head>
 <body>
-<div class="container">
+    <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>{{$post->title}}</h1>
-                <p>{{$post->body}}</p>
-                <p>{{$post->created_at->format('H:i  d / m / Y')}}</p>
+                <h1>{{ $post->title }}</h1>
+                <p>{{ $post->body }}</p>
+                <p>{{ $post->created_at->format('d/m/Y H:i a') }}</p>
+                <p>Autor: {{ $post->author->name }}</p>
                 <a href ="{{ route('posts.index') }}">Regresar</a>
             </div>
         </div>
-</div>
+    </div>
 </body>
 </html>

@@ -497,7 +497,7 @@
                                     <th scope="row">{{ $post->id }}</th>
                                     <td><a href="{{ route('posts.show', $post) }}">{{ $post->title }}</a></td>
                                     <td>{{ $post->created_at->format('d/m/Y') }}</td>
-                                    <td>{{ $post->user_id }}</td>
+                                    <td>{{ $post->author->name }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
