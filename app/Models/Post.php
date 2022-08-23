@@ -15,8 +15,18 @@ class Post extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function approving(): BelongsTo
+    public function approver(): BelongsTo
     {
         return $this->belongsTo(User::class, 'approved_by');
+    }
+
+    public function getApproverName(): string
+    {
+        return isset($this->approver) ? $this->approver->name : 'Pendiente';
+    }
+
+    public function getApproverDate(): mixed
+    {
+        return $this->approved_at;
     }
 }
