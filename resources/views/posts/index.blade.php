@@ -416,6 +416,7 @@
                             class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
                     @endif
                 @endauth
+                    <a href="{{ route('about.index') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">About</a>
             </div>
         @endif
         <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
