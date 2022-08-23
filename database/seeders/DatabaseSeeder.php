@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Post;
 use App\Models\User;
+use App\Models\Setting;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -21,5 +22,13 @@ class DatabaseSeeder extends Seeder
             ->count(rand(1,5))
             ->has(Post::factory(count: 50), relationship: 'posts')
             ->create();
+
+        Setting::factory()->create([
+            'objective' => config(key: 'Objetivos del Blog'),
+            'purpose' => config(key: 'Proposito del Blog'),
+        ]);
+
     }
+
+
 }
