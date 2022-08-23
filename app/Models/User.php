@@ -45,7 +45,7 @@ class User extends Authenticatable
 
     public function posts(): HasMany
     {
-        return $this->hasMany(related: Post::class);
+        return $this->hasMany(Post::class, 'created_by');
     }
 
     public function isAdmin(): bool

@@ -20,8 +20,12 @@
                 <p>Autor: {{ $post->author->name }}</p>
                 @auth
                     @if ( auth()->user()->isAdmin())
-                        <p>Approved by:{{ $post->getApproverName() }}</p>
-                        <p>Date:{{ $post->getApproverDate() }}</p>
+                        <p>Approved by: {{ $post->getApproverName() }}</p>
+                        <p>Date: {{ $post->getApproverDate() }}</p>
+                        @if(is_null($post->getApproverDate()))
+                            <a href="{{ route('posts.approver', $post) }}">Approve</a>
+                            <br>
+                        @endif
                     @endif
                 @endauth
                 <a href ="{{ route('posts.index') }}">Regresar</a>

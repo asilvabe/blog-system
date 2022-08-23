@@ -12,7 +12,7 @@ class Post extends Model
 
     public function author(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class, 'created_by');
     }
 
     public function approver(): BelongsTo
@@ -22,7 +22,7 @@ class Post extends Model
 
     public function getApproverName(): string
     {
-        return isset($this->approver) ? $this->approver->name : 'Pendiente';
+        return $this->approver->name ?? 'Pending';
     }
 
     public function getApproverDate(): mixed
