@@ -25,8 +25,4 @@ class Post extends Model
         return $this->approver->name ?? 'Pending';
     }
 
-    public function getApproverDate(): mixed
-    {
-        return $this->approved_at;
-    }
 }

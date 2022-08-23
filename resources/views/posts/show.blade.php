@@ -22,7 +22,7 @@
                     @if ( auth()->user()->isAdmin())
                         <p>Approved by: {{ $post->getApproverName() }}</p>
                         <p>Date: {{ $post->getApproverDate() }}</p>
-                        @if(is_null($post->getApproverDate()))
+                        @if(is_null($post->approved_at))
                             <a href="{{ route('posts.approver', $post) }}">Approve</a>
                             <br>
                         @endif
