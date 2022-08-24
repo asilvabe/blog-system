@@ -24,11 +24,9 @@ class DatabaseSeeder extends Seeder
             ->create();
 
         Setting::factory()->create([
-            'objective' => config(key: 'Objetivos del Blog'),
-            'purpose' => config(key: 'Proposito del Blog'),
-        ]);
-
-    }
+            'objective' => 'Objetivos del Blog',
+            'purpose' => 'Proposito del Blog',
+        ]);    }
 
 
 }
