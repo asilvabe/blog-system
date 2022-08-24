@@ -19,11 +19,15 @@
                 <p>{{ $post->created_at->format('d/m/Y H:i a') }}</p>
                 <p>Autor: {{ $post->author->name }}</p>
                 @auth
-                    @if ( auth()->user()->isAdmin())
+                    @if (auth()->user()->isAdmin())
                         <p>Approved by: {{ $post->getApproverName() }}</p>
-                        <p>Date: {{ $post->approved_at }}</p>
-                        @if(is_null($post->approved_at))
-                            <a href="{{ route('posts.approver', $post) }}">Approve</a>
+                        <p>Date Approved: {{ $post->approved_at }}</p>
+                        @if(!$post->is_approve())
+                            <form method="POST" action="{{ route('posts.approve', $post) }}">
+                                @csrf
+                                @method('PATCH')
+                                <button type="submit">Approve post</button>
+                            </form>
                             <br>
                         @endif
                     @endif
