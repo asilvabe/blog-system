@@ -28,6 +28,4 @@ class DatabaseSeeder extends Seeder
             'purpose' => 'Proposito del Blog',
         ]);
     }
-
-
 }
