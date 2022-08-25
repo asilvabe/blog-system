@@ -19,14 +19,15 @@ class DatabaseSeeder extends Seeder
          ]);
 
         User::factory()
-            ->count(rand(1,5))
+            ->count(rand(10,15))
             ->has(Post::factory(count: 50), relationship: 'posts')
             ->create();
 
         Setting::factory()->create([
             'objective' => 'Objetivos del Blog',
             'purpose' => 'Proposito del Blog',
-        ]);    }
+        ]);
+    }
 
 
 }
