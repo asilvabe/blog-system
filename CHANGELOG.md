@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Link to go to the posts details in posts list [#14](https://github.com/asilvabe/blog-system/pull/14)
 - Relationship for posts and users [#15](https://github.com/asilvabe/blog-system/pull/15)
 - Admin users suppport [#16](https://github.com/asilvabe/blog-system/pull/16)
+- Approve posts [#18](https://github.com/asilvabe/blog-system/pull/18)
 
 ### Changed
 - Readme updated. [#6](https://github.com/asilvabe/blog-system/pull/6)
