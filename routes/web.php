@@ -6,10 +6,10 @@ use App\Http\Controllers\PostController;
 
 Route::get('/', [PostController::class, 'index'])->name('posts.index');
 
-Route::middleware(['auth'])->group(function () {
-    Route::get('posts/create', [PostController::class, 'create'])->name('posts.create');
-    Route::post('posts', [PostController::class, 'store'])->name('posts.store');
-    Route::patch('posts/{post}/approve', ApprovePostController::class)->name('posts.approve');
+Route::middleware(['auth'])->prefix('posts')->name('posts.')->group(function () {
+    Route::get('create', [PostController::class, 'create'])->name('create');
+    Route::post('/', [PostController::class, 'store'])->name('store');
+    Route::patch('{post}/approve', ApprovePostController::class)->name('approve');
 });
 
 Route::get('posts/{post}', [PostController::class,'show'] )->name('posts.show');
