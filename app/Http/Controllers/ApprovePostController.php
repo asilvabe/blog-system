@@ -9,6 +9,10 @@ class ApprovePostController extends Controller
 {
     public function __invoke(Post $post): RedirectResponse
     {
+        if (!auth()->check() || !auth()->user()->isAdmin()) {
+            abort(403);
+        }
+
         $post->approved_at = now();
         $post->approved_by = auth()->user()->id;
         $post->save();
