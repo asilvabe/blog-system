@@ -22,7 +22,7 @@
                     @if(auth()->user()->isAdmin())
                         <p>Approved by: {{ $post->getApproverName() }}</p>
                         <p>Date Approved: {{ $post->approved_at }}</p>
-                        @if(!$post->isApprove())
+                        @if(!$post->isApproved())
                             <form method="POST" action="{{ route('posts.approve', $post) }}">
                                 @csrf
                                 @method('PATCH')

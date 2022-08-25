@@ -25,7 +25,7 @@ class Post extends Model
         return $this->approver->name ?? 'Pending';
     }
 
-    public function isApprove(): bool
+    public function isApproved(): bool
     {
         return !is_null($this->approved_at);
     }
