@@ -408,6 +408,10 @@
                         @csrf
                         <button type="submit">Salir</button>
                     </form>
+                    @if (auth()->user()->isAdmin())
+                        <a href="{{ route('users.index') }}"
+                           class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Show Users</a>
+                    @endif
                 @else
                     <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
 
