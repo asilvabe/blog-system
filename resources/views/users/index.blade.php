@@ -13,14 +13,34 @@
 <body>
 <div class="container">
     <div class="row">
-        <div class="col-md-12">
-            @foreach ($users as $user)
-                <h3>{{ $user->name }}</h3>
-                <p>{{ $user->email }}</p>
+        <div class="col-md-8">
+            <a href ="{{ route('posts.index') }}">Regresar </a>
+            <table class="table table-bordered text-center">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                </tr>
+                </thead>
+                <tbody>
+           @foreach ($users as $user)
+               <tr>
+                   <th scope="row">{{ $user->id }}</th>
+                   <td>{{ $user->name }}</td>
+                   <td>{{ $user->email }}</td>
+               </tr>
             @endforeach
-            <a href ="{{ route('posts.index') }}">Regresar</a>
+                <tr>
+                    <td colspan="3">
+                        {{ $users->links() }}
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
         </div>
-        {{ $users->links() }}
+
     </div>
 </div>
 </body>
