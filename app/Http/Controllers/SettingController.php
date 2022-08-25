@@ -8,10 +8,10 @@ use App\Models\Setting;
 
 class SettingController extends Controller
 {
-    public function index(): View
+    public function show(): View
     {
         $setting = Setting::First();
 
-        return view('about.index', ['setting'=> $setting]);
+        return view('about.show', ['setting'=> $setting]);
     }
 }

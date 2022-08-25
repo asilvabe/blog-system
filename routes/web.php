@@ -16,4 +16,4 @@ Route::middleware(['auth'])->group(function () {
 
 Route::get('posts/{post}', [PostController::class,'show'] )->name('posts.show');
 
-Route::get('about/', [SettingController::class,'index'] )->name('about.index');
+Route::get('about/', [SettingController::class,'show'] )->name('about.show');
