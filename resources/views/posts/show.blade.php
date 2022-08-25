@@ -19,10 +19,10 @@
                 <p>{{ $post->created_at->format('d/m/Y H:i a') }}</p>
                 <p>Autor: {{ $post->author->name }}</p>
                 @auth
-                    @if (auth()->user()->isAdmin())
+                    @if(auth()->user()->isAdmin())
                         <p>Approved by: {{ $post->getApproverName() }}</p>
                         <p>Date Approved: {{ $post->approved_at }}</p>
-                        @if(!$post->is_approve())
+                        @if(!$post->isApprove())
                             <form method="POST" action="{{ route('posts.approve', $post) }}">
                                 @csrf
                                 @method('PATCH')
