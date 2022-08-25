@@ -21,9 +21,9 @@ class PostController extends Controller
         return view('posts.create');
     }
 
-    public function show(Post $post)
+    public function show(Post $post): View
     {
-        return view('posts.show',['post'=> $post]);
+        return view('posts.show', ['post'=> $post]);
     }
 
     public function store(Request $request): RedirectResponse
@@ -36,12 +36,12 @@ class PostController extends Controller
         $post = new Post;
         $post->title = $request->input('title');
         $post->body = $request->input('body');
-        $post->user_id = auth()->user()->id;
-        
+        $post->created_by = auth()->user()->id;
+
         $post->save();
-        
+
         session()->flash('status', 'Post Created!!');
-        
+
         return to_route('posts.index');
     }
 }

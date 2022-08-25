@@ -18,6 +18,20 @@
                 <p>{{ $post->body }}</p>
                 <p>{{ $post->created_at->format('d/m/Y H:i a') }}</p>
                 <p>Autor: {{ $post->author->name }}</p>
+                @auth
+                    @if(auth()->user()->isAdmin())
+                        <p>Approved by: {{ $post->getApproverName() }}</p>
+                        <p>Date Approved: {{ $post->approved_at }}</p>
+                        @if(!$post->isApproved())
+                            <form method="POST" action="{{ route('posts.approve', $post) }}">
+                                @csrf
+                                @method('PATCH')
+                                <button type="submit">Approve post</button>
+                            </form>
+                            <br>
+                        @endif
+                    @endif
+                @endauth
                 <a href ="{{ route('posts.index') }}">Regresar</a>
             </div>
         </div>

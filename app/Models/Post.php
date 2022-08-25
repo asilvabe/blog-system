@@ -12,6 +12,21 @@ class Post extends Model
 
     public function author(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class, 'created_by');
+    }
+
+    public function approver(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'approved_by');
+    }
+
+    public function getApproverName(): string
+    {
+        return $this->approver->name ?? 'Pending';
+    }
+
+    public function isApproved(): bool
+    {
+        return !is_null($this->approved_at);
     }
 }
