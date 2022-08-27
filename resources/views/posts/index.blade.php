@@ -42,7 +42,7 @@
             </div>
         </article>
     @empty
-        <p class="font-semibold mt-5">No hay publicaciones</p>
+        <p class="font-semibold mt-5">There are no posts</p>
     @endforelse
 
     @if(count($posts) > 0)
