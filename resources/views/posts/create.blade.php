@@ -1,43 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Post</title>
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
-    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-</head>
-<body>
-    <form action="{{ route('posts.store') }}" method="POST">
+@extends('layouts.master')
+
+@section('body')
+    <form action="{{ route('posts.store') }}" method="post">
         @csrf
-    <div class="container">
-    <div class="card text-dark bg-light mb-3" style="width: 18rem;">
-        @if(session('status'))
-        <div class="card-header">
-          {{ session('status') }}
+        <div class="flex flex-col w-full my-4">
+            <h1 class="text-3xl font-bold">Create Post</h1>
+            <div class="flex flex-col mt-5">
+                <label for="title" class="block text-gray-700 text-sm font-bold mb-2">Title</label>
+                <input id="title" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('title') border-red-500 @enderror" type="text" name="title" placeholder="Write text here" value="{{ old('title') }}">
+                @error('title')
+                    <p class="text-red-500">{{ $message }}</p>
+                @enderror
+            </div>
+            <div class="flex flex-col mt-5">
+                <label for="body" class="block text-gray-700 text-sm font-bold mb-2">Body</label>
+                <textarea id="body" name="body" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('body') border-red-500 @enderror" placeholder="Write body test here" rows="5">{{ old('body') }}</textarea>
+                @error('body')
+                    <p class="text-red-500">{{ $message }}</p>
+                @enderror
+            </div>
         </div>
-        @endif
-        <div class="card-body " >
-            <h5 class="card-title">Create Post</h5>
-            <p class="card-text col-md-4">
-            <div class="form-group">
-                <label for="title" class="form-label">Title</label>
-                <input type="text" class="form-control" id="title" name="title" placeholder="Write text here" value="{{ old('title') }}">
-                @error('title')<small class="alert-danger">{{ $message }}</small>@enderror
-            </div>
-            <div class="form-group">
-                <label for="body" class="form-label">Body</label>
-                <textarea name="body" class="form-control" placeholder="Write body test here">{{ old('body') }}</textarea>
-                @error('body')<small class="alert-danger">{{ $message }}</small>@enderror
-            </div>
-            <button type="submit" class="btn btn-primary">Save post</button>
-            <input  type="reset" class="btn btn-warning" value="Reset" />
-      </div>
-    </div>
-    </div>
+        <div class="flex flex-row">
+            <button type="submit" class="bg-blue-800 text-white font-bold text-sm uppercase rounded hover:bg-blue-700 flex items-center justify-center px-5 py-3 mt-4">Save post</button>
+            <button type="reset" class="text-sm uppercase rounded flex items-center justify-center px-5 py-3 mt-4">Reset</button>
+        </div>
     </form>
-</body>
-</html>
+@stop
