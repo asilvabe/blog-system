@@ -10,6 +10,8 @@ class Post extends Model
 {
     use HasFactory;
 
+    protected $dates = ['approved_at'];
+
     public function author(): BelongsTo
     {
         return $this->belongsTo(User::class, 'created_by');

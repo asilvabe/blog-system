@@ -1,52 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Registro</title>
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
-    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-</head>
-<body>
-    <div class="container center">
-        <div class="mt-3 text-center">
-            <div class="card border-dark mb-3" style="max-width: 18rem;">
-                <form action="{{ route('register') }}" method="post">
-                    @csrf
-                    <div class="card-header"><h5>Register</h5></div>
-                    <div class="card-body text-dark">
-                        <h5 class="card-title">New User</h5>
-                        <div class="form-group">
-                            <input type="text" class="form-control" name="name" placeholder="UserName" value="{{ old('name') }}">
-                        </div>
-                        <div class="form-group">
-                            <input type="email" class="form-control" name="email" placeholder="Email" value="{{ old('email') }}">
-                        </div>
-                        <div class="form-group">
-                            <input type="password" class="form-control" name="password" placeholder="Password">
-                        </div>
-                        <div class="form-group">
-                            <input type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password">
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-success btn-lg btn-block">Register</button>
-                        </div>
-                    </div>
-                    @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    @endif
-                </form>
+@extends('layouts.master')
+
+@section('body')
+    <form action="{{ route('register') }}" method="post">
+        @csrf
+        <div class="flex flex-col items-center my-4">
+            <h1 class="text-2xl uppercase font-bold">Register</h1>
+            <div class="mt-5">
+                <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Name</label>
+                <input id="name" type="text" class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('name') border-red-500 @enderror" name="name" value="{{ old('name') }}">
+                @error('name')<p class="text-red-500">{{ $message }}</p>@enderror
+            </div>
+            <div class="mt-5">
+                <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Email</label>
+                <input id="email" class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('email') border-red-500 @enderror" type="text" name="email">
+                @error('email')<p class="text-red-500">{{ $message }}</p>@enderror
+            </div>
+            <div class="mt-5">
+                <label for="password" class="block text-gray-700 text-sm font-bold mb-2">Password</label>
+                <input id="password" class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('password') border-red-500 @enderror" type="password" name="password">
+                @error('password')<p class="text-red-500">{{ $message }}</p>@enderror
+            </div>
+            <div class="mt-5">
+                <label for="password_confirmation" class="block text-gray-700 text-sm font-bold mb-2">Confirm password</label>
+                <input id="password_confirmation" class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('password_confirmation') border-red-500 @enderror" type="password" name="password_confirmation">
+                @error('password_confirmation')<p class="text-red-500">{{ $message }}</p>@enderror
+            </div>
+            <div class="flex flex-row">
+                <button type="submit" class="bg-blue-800 text-white font-bold text-sm uppercase rounded hover:bg-blue-700 flex items-center justify-center px-5 py-3 mt-4">Register</button>
             </div>
         </div>
-    </div>
-</body>
-</html>
+    </form>
+@stop

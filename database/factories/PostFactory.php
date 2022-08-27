@@ -13,7 +13,7 @@ class PostFactory extends Factory
     public function definition(): array
     {
         return [
-            'title'=> $this->faker->word(),
+            'title'=> $this->faker->sentence(3),
             'body'=> $this->faker->paragraph(),
             'created_by' => User::factory(),
             'created_at' => $this->faker->dateTime(),
