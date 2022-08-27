@@ -15,6 +15,17 @@
             <p class="pb-3">{{ $post->body }}</p>
         </div>
     </article>
+    @if (auth()->check() && auth()->user()->isAdmin())
+        @if ($post->isApproved())
+            <p>Approved by <span class="text-capitalize font-semibold">{{ $post->approver->name }}</span> on {{ $post->approved_at->toFormattedDateString() }}</p>
+        @else
+            <form method="POST" action="{{ route('posts.approve', $post) }}">
+                @csrf
+                @method('PATCH')
+                <button type="submit" class="bg-blue-800 text-white font-bold text-sm uppercase rounded hover:bg-blue-700 flex items-center justify-center px-2 py-3 mt-4">Approve post</button>
+            </form>
+        @endif
+    @endIf
 
     <div class="w-full flex pt-6">
         <a href="#" class="w-1/2 bg-white shadow hover:shadow-md text-left p-6">
