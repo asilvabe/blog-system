@@ -24,23 +24,21 @@
                 </tr>
                 </thead>
                 <tbody>
-           @foreach ($users as $user)
-               <tr>
-                   <th scope="row">{{ $user->id }}</th>
-                   <td>{{ $user->name }}</td>
-                   <td>{{ $user->email }}</td>
-               </tr>
-            @endforeach
-                <tr>
-                    <td colspan="3">
-                        {{ $users->links() }}
-                    </td>
-                </tr>
+                    @foreach ($users as $user)
+                       <tr>
+                           <th scope="row">{{ $user->id }}</th>
+                           <td>{{ $user->name }}</td>
+                           <td>{{ $user->email }}</td>
+                       </tr>
+                    @endforeach
+                    <tr>
+                        <td colspan="3">
+                            {{ $users->links() }}
+                        </td>
+                    </tr>
                 </tbody>
             </table>
-
         </div>
-
     </div>
 </div>
 </body>
