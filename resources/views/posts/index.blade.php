@@ -37,7 +37,7 @@
                 <p href="#" class="text-sm pb-3">
                     By <a href="#" class="font-semibold hover:text-gray-800">{{ $post->author->name }}</a>, Published on {{ $post->created_at->toFormattedDateString() }}
                 </p>
-                <a href="#" class="pb-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus quis porta dui. Ut eu iaculis massa. Sed ornare ligula lacus, quis iaculis dui porta volutpat. In sit amet posuere magna..</a>
+                <p class="pb-6">{{ $post->body }}</p>
                 <a href="{{ route('posts.show', $post) }}" class="uppercase text-gray-800 hover:text-black">Continue Reading <i class="fas fa-arrow-right"></i></a>
             </div>
         </article>
