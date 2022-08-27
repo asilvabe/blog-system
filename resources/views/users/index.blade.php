@@ -9,6 +9,15 @@
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <style>
+        .w-5 {
+            width: 1.25rem
+        }
+
+        .h-5 {
+            height: 1.25rem
+        }
+    </style>
 </head>
 <body>
 <div class="container">
