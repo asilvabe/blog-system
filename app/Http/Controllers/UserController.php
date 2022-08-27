@@ -6,9 +6,9 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
-class ShowUserController extends Controller
+class UserController extends Controller
 {
-    public function __invoke(Request $request): View
+    public function index(): View
     {
         $users = User::Paginate(10);
 
