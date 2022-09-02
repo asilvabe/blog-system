@@ -20,7 +20,7 @@ class PostsTest extends TestCase
         Post::factory()->count(3)->create();
 
         $response = $this
-            ->get(url('/'))
+            ->get(route('posts.index'))
             ->assertOk()
             ->assertViewHas('posts');
 
@@ -31,7 +31,7 @@ class PostsTest extends TestCase
     public function it_can_render_the_main_page_even_when_there_are_no_posts(): void
     {
         $this
-            ->get(url('/'))
+            ->get(route('posts.index'))
             ->assertOk()
             ->assertSee('There are no posts');
     }
