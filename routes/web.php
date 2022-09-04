@@ -4,7 +4,7 @@ use App\Http\Controllers\ApprovePostController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 
-Route::get('/', [PostController::class, 'index'])->name('posts.index');
+Route::get('/', [PostController::class, 'index'])->name('posts.welcome');
 
 Route::middleware(['auth'])->prefix('posts')->name('posts.')->group(function () {
     Route::get('create', [PostController::class, 'create'])->name('create');

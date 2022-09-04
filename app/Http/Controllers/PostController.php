@@ -13,7 +13,7 @@ class PostController extends Controller
     {
         $posts = Post::simplePaginate(3);
 
-        return view('posts.index', compact('posts'));
+        return view('posts.welcome', compact('posts'));
     }
 
     public function create(): View
