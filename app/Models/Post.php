@@ -50,7 +50,7 @@ class Post extends Model
 
     public function scopeAuthor($query, $author)
     {
-        if ($author != '0')
+        if ($author != 0)
             return $query->where('created_by', '=', $author);
     }
 

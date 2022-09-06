@@ -26,10 +26,10 @@ class PostController extends Controller
         $from = $request->get('date_from');
         $to = $request->get('date_to');
 
-        $posts = Post::title($title)->status($status)->author($author)->daterange($from,$to)->Paginate(19);
+        $posts = Post::title($title)->status($status)->author($author)->daterange($from, $to)->Paginate(19);
         $users = User::all();
 
-        return view('posts.index', compact('posts','users'));
+        return view('posts.index', compact('posts', 'users'));
     }
 
     public function create(): View

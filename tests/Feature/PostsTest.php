@@ -45,8 +45,9 @@ class PostsTest extends TestCase
             ->actingAs($regularUser)
             ->get(route('posts.index'))
             ->assertOk()
-            ->assertForbidden();
+            ->assertViewHas('posts');
 
+        $this->assertCount(3, $response['posts']);
     }
 
     /** @test */
@@ -60,8 +61,9 @@ class PostsTest extends TestCase
             ->actingAs($adminUser)
             ->get(route('posts.index'))
             ->assertOk()
-            ->assertForbidden();
+            ->assertViewHas('posts');
 
+        $this->assertCount(3, $response['posts']);
     }
 
     /** @test */
