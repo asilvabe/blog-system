@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use App\Models\Post;
 use App\Models\User;
+use Illuminate\Support\Arr;
 use Illuminate\View\View;
 
 class PostController extends Controller
