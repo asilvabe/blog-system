@@ -20,33 +20,48 @@
             <form action="{{ route('posts.index') }}" method="get">
                 <div class="grid gap-6 mb-6 md:grid-cols-5">
                     <div>
-                        <input type="text" id="title_search" name="title_search"
+                        <input
+                            type="text"
+                            id="title_search"
+                            name="title_search"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="Title Search">
+                            placeholder="Title Search"
+                            value="{{ request()->get('title_search') ?? ''}}"
+                        >
                     </div>
                     <div>
-                        <input type="date" id="date_from" name="date_from"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <input
+                            type="date"
+                            id="date_from"
+                            name="date_from"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            value="{{ request()->get('date_from') ?? ''}}"
+                        >
                     </div>
                     <div>
-                        <input type="date" id="date_to" name="date_to"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <input
+                            type="date"
+                            id="date_to"
+                            name="date_to"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            value="{{ request()->get('date_to') ?? ''}}"
+                        >
                     </div>
                     <div>
                         <select id="author" name="author"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                            <option value='0' selected>Select Author</option>
+                            <option value='0' @selected(request()->get('author') == 0)>Select Author</option>
                             @foreach ($users as $user)
-                                <option value='{{ $user->id }}'>{{ $user->name }}</option>
+                                <option value='{{ $user->id }}' @selected(request()->get('author') == $user->id)>{{ $user->name }}</option>
                             @endforeach
                         </select>
                     </div>
                     <div>
                         <select id="status" name="status"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                            <option value="0" selected>All</option>
-                            <option value="1">approved</option>
-                            <option value="2">unapproved</option>
+                            <option value="0" @selected(request()->get('status') == 0)>All</option>
+                            <option value="1" @selected(request()->get('status') == 1)>approved</option>
+                            <option value="2" @selected(request()->get('status') == 2)>unapproved</option>
                         </select>
                     </div>
                     <div>
