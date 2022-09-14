@@ -64,10 +64,13 @@
                             <option value="2" @selected(request()->get('status') == 2)>unapproved</option>
                         </select>
                     </div>
-                    <div>
-                        <button type="submit"
-                            class="bg-blue-800 text-white font-bold text-sm uppercase rounded hover:bg-blue-700 flex items-center justify-center px-5 py-3 mt-4">Search</button>
-                    </div>
+                </div>
+                <div class="flex items-center">
+                    <button
+                        type="submit"
+                        class="bg-blue-800 text-white font-bold text-sm uppercase rounded hover:bg-blue-700 flex items-center justify-center px-5 py-3"
+                    >Search</button>
+                    <a class="ml-4" href="{{ route('posts.index') }}">Limpiar filtros</a>
                 </div>
             </form>
 
