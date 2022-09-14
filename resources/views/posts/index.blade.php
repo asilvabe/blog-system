@@ -26,7 +26,7 @@
                             name="title_search"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="Title Search"
-                            value="{{ request()->get('title_search') ?? ''}}"
+                            value="{{ request()->get('title_search') ?? '' }}"
                         >
                     </div>
                     <div>
@@ -35,7 +35,7 @@
                             id="date_from"
                             name="date_from"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            value="{{ request()->get('date_from') ?? ''}}"
+                            value="{{ request()->get('date_from') ?? '' }}"
                         >
                     </div>
                     <div>
@@ -44,7 +44,7 @@
                             id="date_to"
                             name="date_to"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            value="{{ request()->get('date_to') ?? ''}}"
+                            value="{{ request()->get('date_to') ?? '' }}"
                         >
                     </div>
                     <div>
@@ -60,8 +60,8 @@
                         <select id="status" name="status"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             <option value="0" @selected(request()->get('status') == 0)>All</option>
-                            <option value="1" @selected(request()->get('status') == 1)>approved</option>
-                            <option value="2" @selected(request()->get('status') == 2)>unapproved</option>
+                            <option value="1" @selected(request()->get('status') == 1)>Approved</option>
+                            <option value="2" @selected(request()->get('status') == 2)>Pending</option>
                         </select>
                     </div>
                 </div>
@@ -94,7 +94,13 @@
                             </td>
                             <td>{{ $post->author->name }}</td>
                             <td>{{ $post->created_at->toFormattedDateString() }}</td>
-                            <td>{{ $post->getApproverName() }}</td>
+                            <td>
+                                @if ($post->isApproved())
+                                    <span class="bg-green-100 text-green-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-200 dark:text-green-900">Approved</span>
+                                @else
+                                    <span class="bg-yellow-100 text-yellow-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-yellow-200 dark:text-yellow-900">Pending</span>
+                                @endif
+                            </td>
                         </tr>
                     @empty
                         <tr>
