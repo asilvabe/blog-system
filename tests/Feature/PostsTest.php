@@ -39,6 +39,7 @@ class PostsTest extends TestCase
     public function it_cannot_list_posts_details_if_not_admin_users(): void
     {
         Post::factory()->count(3)->create();
+
         $regularUser = User::factory()->create();
 
         $response = $this
@@ -47,7 +48,7 @@ class PostsTest extends TestCase
             ->assertOk()
             ->assertViewHas('posts');
 
-        $this->assertCount(3, $response['posts']);
+        $this->assertCount(0, $response['posts']);
     }
 
     /** @test */
@@ -265,9 +266,21 @@ class PostsTest extends TestCase
         ];
     }
 
+    /** @test */
     public function it_can_search_posts_by_title(): void
     {
+        Post::factory()->count(9)->create();
+        Post::factory()->create(['title' => 'test awesome title']);
 
+        $adminUser = User::factory()->admin()->create();
+
+        $response = $this
+            ->actingAs($adminUser)
+            ->get(route('posts.index', ['title_search' => 'awesome']))
+            ->assertOk()
+            ->assertViewHas('posts');
+
+        $this->assertCount(1, $response['posts']);
     }
 
     public function it_can_filter_posts_by_creation_date_range(): void

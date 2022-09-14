@@ -20,6 +20,13 @@ class PostController extends Controller
 
     public function index(Request $request): View
     {
+        if (!auth()->check() || !auth()->user()->isAdmin()) {
+            return view('posts.index', [
+                'posts' => [],
+                'users' => [],
+            ]);
+        }
+
         $title = $request->get('title_search');
         $status = $request->get('status');
         $author = $request->get('author');
