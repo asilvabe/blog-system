@@ -16,10 +16,11 @@
         </div>
     @endif
     @if (auth()->check() && auth()->user()->isAdmin())
-        <article class="flex flex-col shadow my-4">
+        <div class="flex flex-col my-4">
             <form action="{{ route('posts.index') }}" method="get">
                 <div class="grid gap-6 mb-6 md:grid-cols-5">
                     <div>
+                        <span class="text-sm text-gray-500">SEARCH</span>
                         <input
                             type="text"
                             id="title_search"
@@ -30,6 +31,7 @@
                         >
                     </div>
                     <div>
+                        <span class="text-sm text-gray-500">FROM</span>
                         <input
                             type="date"
                             id="date_from"
@@ -39,6 +41,7 @@
                         >
                     </div>
                     <div>
+                        <span class="text-sm text-gray-500">TO</span>
                         <input
                             type="date"
                             id="date_to"
@@ -48,6 +51,7 @@
                         >
                     </div>
                     <div>
+                        <span class="text-sm text-gray-500">AUTHOR</span>
                         <select id="author" name="author"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             <option value='0' @selected(request()->get('author') == 0)>Select Author</option>
@@ -57,6 +61,7 @@
                         </select>
                     </div>
                     <div>
+                        <span class="text-sm text-gray-500">STATUS</span>
                         <select id="status" name="status"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             <option value="0" @selected(request()->get('status') == 0)>All</option>
@@ -74,27 +79,27 @@
                 </div>
             </form>
 
-            <table class="border-separate border-spacing-2 border-slate-400">
+            <table class="border-separate border-spacing-2 border-slate-400 mt-5">
                 <thead>
-                    <tr>
+                    <tr class="text-left">
                         <th>Title</th>
                         <th>Author</th>
                         <th>Date Post</th>
-                        <th>Status</th>
+                        <th class="text-center">Status</th>
                     </tr>
                 </thead>
-                <tbody class="text-center ">
+                <tbody>
                     @forelse ($posts as $post)
                         <tr>
                             <td>
                                 <a href="{{ route('posts.show', $post) }}"
-                                    class="text-1xl font-bold hover:text-gray-700 pb-4">
+                                    class="text-1xl text-blue-700 hover:underline pb-4">
                                     {{ $post->title }}
                                 </a>
                             </td>
                             <td>{{ $post->author->name }}</td>
                             <td>{{ $post->created_at->toFormattedDateString() }}</td>
-                            <td>
+                            <td class="text-center">
                                 @if ($post->isApproved())
                                     <span class="bg-green-100 text-green-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-200 dark:text-green-900">Approved</span>
                                 @else
@@ -109,7 +114,7 @@
                     @endforelse
                 </tbody>
             </table>
-        </article>
+        </div>
         @if (count($posts) > 0)
             {{ $posts->links() }}
         @endif
