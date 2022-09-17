@@ -20,13 +20,26 @@ class PostController extends Controller
 
     public function index(Request $request): View
     {
+        if (!auth()->check() || !auth()->user()->isAdmin()) {
+            return view('posts.index', [
+                'posts' => [],
+                'users' => [],
+            ]);
+        }
+
         $title = $request->get('title_search');
         $status = $request->get('status');
         $author = $request->get('author');
         $from = $request->get('date_from');
         $to = $request->get('date_to');
 
-        $posts = Post::title($title)->status($status)->author($author)->daterange($from, $to)->Paginate(19);
+        $posts = Post::title($title)
+            ->status($status)
+            ->author($author)
+            ->daterange($from, $to)
+            ->paginate(19)
+            ->withQueryString();
+
         $users = User::all();
 
         return view('posts.index', compact('posts', 'users'));
