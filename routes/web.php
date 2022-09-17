@@ -3,8 +3,9 @@
 use App\Http\Controllers\ApprovePostController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\WelcomeController;
 
-Route::get('/', [PostController::class, 'main'])->name('posts.welcome');
+Route::get('/', WelcomeController::class)->name('welcome');
 
 Route::middleware(['auth'])->prefix('posts')->name('posts.')->group(function () {
     Route::get('create', [PostController::class, 'create'])->name('create');

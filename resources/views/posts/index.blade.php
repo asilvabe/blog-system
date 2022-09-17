@@ -52,7 +52,9 @@
                     </div>
                     <div>
                         <span class="text-sm text-gray-500">AUTHOR</span>
-                        <select id="author" name="author"
+                        <select
+                            id="author"
+                            name="author"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             <option value='0' @selected(request()->get('author') == 0)>Select Author</option>
                             @foreach ($users as $user)
@@ -62,7 +64,9 @@
                     </div>
                     <div>
                         <span class="text-sm text-gray-500">STATUS</span>
-                        <select id="status" name="status"
+                        <select
+                            id="status"
+                            name="status"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             <option value="0" @selected(request()->get('status') == 0)>All</option>
                             <option value="1" @selected(request()->get('status') == 1)>Approved</option>

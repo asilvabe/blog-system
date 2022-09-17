@@ -6,18 +6,10 @@ use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use App\Models\Post;
 use App\Models\User;
-use Illuminate\Support\Arr;
 use Illuminate\View\View;
 
 class PostController extends Controller
 {
-    public function main(): View
-    {
-        $posts = Post::simplePaginate(3);
-
-        return view('posts.welcome', compact('posts'));
-    }
-
     public function index(Request $request): View
     {
         if (!auth()->check() || !auth()->user()->isAdmin()) {
@@ -71,6 +63,6 @@ class PostController extends Controller
 
         session()->flash('status', 'Post Created!!');
 
-        return to_route('posts.welcome');
+        return to_route('welcome');
     }
 }
