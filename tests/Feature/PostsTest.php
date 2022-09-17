@@ -20,7 +20,7 @@ class PostsTest extends TestCase
         Post::factory()->count(3)->create();
 
         $response = $this
-            ->get(route('posts.welcome'))
+            ->get(route('welcome'))
             ->assertOk()
             ->assertViewHas('posts');
 
@@ -83,7 +83,7 @@ class PostsTest extends TestCase
     public function it_can_render_the_main_page_even_when_there_are_no_posts(): void
     {
         $this
-            ->get(route('posts.welcome'))
+            ->get(route('welcome'))
             ->assertOk()
             ->assertSee('There are no posts');
     }
@@ -140,7 +140,7 @@ class PostsTest extends TestCase
         $this
             ->actingAs(User::factory()->create())
             ->post(route('posts.store'), $data)
-            ->assertRedirect(route('posts.welcome'));
+            ->assertRedirect(route('welcome'));
 
         $this->assertDatabaseHas('posts', $data);
     }
@@ -283,19 +283,58 @@ class PostsTest extends TestCase
         $this->assertCount(1, $response['posts']);
     }
 
+    /** @test */
     public function it_can_filter_posts_by_creation_date_range(): void
     {
+        Post::factory()->count(9)->create();
+        Post::factory()->create(['created_at' => '2013-03-05']);
 
+        $adminUser = User::factory()->admin()->create();
+
+        $response = $this
+            ->actingAs($adminUser)
+            ->get(route('posts.index', ['date_from' => '2013-03-01', 'date_to' => '2013-03-10']))
+            ->assertOk()
+            ->assertViewHas('posts');
+
+        $this->assertCount(1, $response['posts']);
     }
 
+    /** @test */
     public function it_can_filter_posts_by_author(): void
     {
+        $regularUser = User::factory()->create(['id' => 1]);
 
+        Post::factory()->count(9)->create();
+        Post::factory()->create(['created_by' => $regularUser->id]);
+
+        $adminUser = User::factory()->admin()->create();
+
+        $response = $this
+            ->actingAs($adminUser)
+            ->get(route('posts.index', ['author' => $regularUser->id]))
+            ->assertOk()
+            ->assertViewHas('posts');
+
+        $this->assertCount(1, $response['posts']);
     }
 
+    /** @test */
     public function it_can_filter_posts_by_approve_status(): void
     {
+        $admin = User::factory()->admin()->create(['id' => 1]);
+        $approved = 1;
+        Post::factory()->count(9)->create();
+        Post::factory()->create(['approved_by' => $admin->id]);
 
+        $adminUser = User::factory()->admin()->create();
+
+        $response = $this
+            ->actingAs($adminUser)
+            ->get(route('posts.index', ['status' => $approved]))
+            ->assertOk()
+            ->assertViewHas('posts');
+
+        $this->assertCount(1, $response['posts']);
     }
-
 }
