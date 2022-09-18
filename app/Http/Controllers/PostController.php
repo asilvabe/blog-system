@@ -19,18 +19,12 @@ class PostController extends Controller
             ]);
         }
 
-        $title = $request->get('title_search');
-        $status = $request->get('status');
-        $author = $request->get('author');
-        $from = $request->get('date_from');
-        $to = $request->get('date_to');
-
-        $posts = Post::title($title)
-            ->status($status)
-            ->author($author)
-            ->daterange($from, $to)
-            ->paginate(19)
-            ->withQueryString();
+        $posts = Post::title($request->get('title_search'))
+        ->status($request->get('status'))
+        ->author($request->get('author'))
+        ->daterange($request->get('date_from'), $request->get('date_to'))
+        ->paginate(19)
+        ->withQueryString();
 
         $users = User::all();
 

@@ -323,7 +323,7 @@ class PostsTest extends TestCase
     public function it_can_filter_posts_by_approve_status(): void
     {
         $admin = User::factory()->admin()->create(['id' => 1]);
-        $approved = 1;
+
         Post::factory()->count(9)->create();
         Post::factory()->create(['approved_by' => $admin->id]);
 
@@ -331,7 +331,7 @@ class PostsTest extends TestCase
 
         $response = $this
             ->actingAs($adminUser)
-            ->get(route('posts.index', ['status' => $approved]))
+            ->get(route('posts.index', ['status' => "approved"]))
             ->assertOk()
             ->assertViewHas('posts');
 
