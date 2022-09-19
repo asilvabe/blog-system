@@ -5,15 +5,30 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\View\View;
 
 class PostController extends Controller
 {
-    public function index(): View
+    public function index(Request $request): View
     {
-        $posts = Post::simplePaginate(3);
+        if (!auth()->check() || !auth()->user()->isAdmin()) {
+            return view('posts.index', [
+                'posts' => [],
+                'users' => [],
+            ]);
+        }
 
-        return view('posts.index', compact('posts'));
+        $posts = Post::title($request->get('title_search'))
+        ->status($request->get('status'))
+        ->author($request->get('author'))
+        ->daterange($request->get('date_from'), $request->get('date_to'))
+        ->paginate(19)
+        ->withQueryString();
+
+        $users = User::all();
+
+        return view('posts.index', compact('posts', 'users'));
     }
 
     public function create(): View
@@ -23,7 +38,7 @@ class PostController extends Controller
 
     public function show(Post $post): View
     {
-        return view('posts.show', ['post'=> $post]);
+        return view('posts.show', ['post' => $post]);
     }
 
     public function store(Request $request): RedirectResponse
@@ -42,6 +57,6 @@ class PostController extends Controller
 
         session()->flash('status', 'Post Created!!');
 
-        return to_route('posts.index');
+        return to_route('welcome');
     }
 }
